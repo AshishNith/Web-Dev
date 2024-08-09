@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IR Sensor Module Documentation</title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="CSS/styles.css">
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <h1><a href="https://ashishnith.github.io/MyWebsite/">Ashish Ranjan <i class="ri-arrow-right-up-line"></i></a></h1>
+            <nav>
+                <ul>
+                    <li><a href="arduino.html">Arduino</a></li>
+                    <li><a href="MotorDriver.html">L298N Motor Driver</a></li>
+                    <li><a href="Sim900A.html">SIM900A GSM Module</a></li>
+                    <li><a href="ir.html">IR Sensor</a></li>
+                    <li><a href="servo-motor.html">Servo Motor (SG90)</a></li>
+                    <li><a href="hc-sr04.html">HC-SR04 Ultrasonic Sensor</a></li>
+
+                    <li><a href="joystick.html">Joystick</a></li>
+                    <li><a href="nrf24l01.html">NRF24L01 Transceiver Module</a></li>
+                    <li><a href="hc-05.html">HC-05 Bluetooth Module</a></li>
+                </ul>
+            </nav>
+        </aside>
+        <main class="content">
+            <div class="box head">
+                <div class="heading">IR Sensor Module</div>
+            </div>
+            
+            <section id="introduction">
+                <h2>Introduction</h2>
+                <p>An Infrared (IR) sensor module is a small electronic device that sends out and detects infrared light to understand its surroundings. These sensors are very common and are used in many different ways. You can find them in things like robots that need to avoid obstacles, robots that follow lines, and even in remote controls for TVs. This document is a complete guide to help beginners learn about IR sensor modules, how they work, and how to use them in different projects. Whether you are a student, a hobbyist, or just curious about electronics, this guide will help you get started with IR sensors.</p>
+                <img src="images/IrIntro.png" alt="">
+            </section>
+
+            <section id="what-is-ir-sensor">
+                <h2>1. What is an IR Sensor Module?</h2>
+                <p>An IR sensor module is a device that uses infrared light to detect objects or measure distance. It typically consists of an IR LED (transmitter) and an IR photodiode or phototransistor (receiver). When the IR light emitted by the LED is reflected back to the receiver by an object, the module generates a signal that can be read by a microcontroller.</p>
+            </section>
+
+            <section id="overview-ir-sensor">
+                <h2>2. Overview of IR Sensor Module</h2>
+                <p>The IR sensor module is a versatile component used for detecting objects, measuring distance, and many other applications. It typically comes in a small, easy-to-use package and includes the following key components:</p>
+                <h3>Key Features</h3>
+                <ul>
+                    <li>IR LED (transmitter)</li>
+                    <li>IR receiver (photodiode or phototransistor)</li>
+                    <li>Operational amplifier (for signal processing)</li>
+                    <li>Potentiometer (for adjusting sensitivity)</li>
+                    <li>Output pins (digital and/or analog)</li>
+                </ul>
+            </section>
+
+            <section id="pin-configuration">
+                <h2>3. Pin Configuration</h2>
+                <p>The IR sensor module usually has three pins: VCC, GND, and OUT. Some modules may have an additional analog output pin (AO).</p>
+                <h3>Pins Description</h3>
+                <ul>
+                    <li><strong>VCC</strong>: Power supply pin (usually 3.3V or 5V).</li>
+                    <li><strong>GND</strong>: Ground pin.</li>
+                    <li><strong>OUT</strong>: Digital output pin.</li>
+                </ul>
+                <img src="images/IrImage.jpeg" alt="">
+
+            </section>
+
+            <section id="working-principle">
+                <h2>4. Working Principle</h2>
+                <p>The IR sensor module works by emitting infrared light from the IR LED. When this light hits an object, it is reflected back to the IR receiver. The intensity of the received light is used to determine the presence or distance of the object.</p>
+                <h3>Signal Processing</h3>
+                <ul>
+                    <li>The reflected IR light is detected by the receiver.</li>
+                    <li>The signal is then processed by the operational amplifier.</li>
+                    <li>The processed signal is sent to the digital output pin (OUT) or analog output pin (AO).</li>
+                </ul>
+                <h3>Sensitivity Adjustment</h3>
+                <p>A potentiometer on the module allows for adjusting the sensitivity of the sensor. By turning the potentiometer, you can change the distance at which the sensor detects objects.</p>
+            </section>
+
+            <section id="wiring-connections">
+                <h2>5. Wiring and Connections</h2>
+                <p>To use the IR sensor module with a microcontroller like Arduino, follow these steps:</p>
+                <h3>Components Needed</h3>
+                <ul>
+                    <li>IR Sensor Module</li>
+                    <li>Arduino Board</li>
+                    <li>Connecting Wires</li>
+                </ul>
+                <h3>Wiring Diagram</h3>
+                <ul>
+                    <li>Connect <strong>VCC</strong> to the 5V pin on the Arduino.</li>
+                    <li>Connect <strong>GND</strong> to the ground pin on the Arduino.</li>
+                    <li>Connect <strong>OUT</strong> to a digital pin on the Arduino (e.g., pin 2).</li>
+                </ul>
+                <p><strong>Example Schematic:</strong></p>
+                <pre>
+Arduino       IR Sensor Module
+-------------------------------
+5V      ->    VCC
+GND     ->    GND
+Pin 2   ->    OUT
+                </pre>
+                <img src="images/ir3.png" alt="">
+            </section>
+
+            <section id="example-applications">
+                <h2>6. Example Applications</h2>
+                <h3>Obstacle Detection</h3>
+                <ul>
+                    <li>Detecting obstacles in robotics.</li>
+                    <li>Automatic doors.</li>
+                </ul>
+                <h3>Line Following</h3>
+                <ul>
+                    <li>Line-following robots.</li>
+                </ul>
+                <h3>Proximity Sensing</h3>
+                <ul>
+                    <li>Proximity detection in various devices.</li>
+                    <li>Hand-sanitizer dispensers.</li>
+                </ul>
+            </section>
+
+            <section id="code-examples">
+                <h2>7. Code Examples for Arduino</h2>
+                <h3>Basic Example to Read Digital Output</h3>
+                <pre>
+const int sensorPin = 2;
+int sensorValue = 0;
+
+void setup() {
+  pinMode(sensorPin, INPUT);
+  Serial.begin(9600);
+}
+
+void loop() {
+  sensorValue = digitalRead(sensorPin);
+  Serial.println(sensorValue);
+  delay(100);
+}
+                </pre>
+                <h3>Basic Example to Read Analog Output</h3>
+                <pre>
+const int sensorPin = A0;
+int sensorValue = 0;
+
+void setup() {
+  Serial.begin(9600);
+}
+
+void loop() {
+  sensorValue = analogRead(sensorPin);
+  Serial.println(sensorValue);
+  delay(100);
+}
+                </pre>
+            </section>
+
+            <section id="troubleshooting">
+                <h2>8. Troubleshooting</h2>
+                <h3>Common Issues</h3>
+                <ul>
+                    <li><strong>No output</strong>: Check power connections and ensure the sensor is properly connected.</li>
+                    <li><strong>False detection</strong>: Adjust the sensitivity using the potentiometer.</li>
+                    <li><strong>Inconsistent readings</strong>: Ensure there are no other sources of IR interference nearby.</li>
+                </ul>
+            </section>
+
+            
+        </main>
+        <aside class="toc">
+            <h2>On this page</h2>
+            <nav>
+                <ul>
+                    <li><a href="#introduction">Introduction</a></li>
+                    <li><a href="#what-is-ir-sensor">What is an IR Sensor Module?</a></li>
+                    <li><a href="#overview-ir-sensor">Overview of IR Sensor Module</a></li>
+                    <li><a href="#pin-configuration">Pin Configuration</a></li>
+                    <li><a href="#working-principle">Working Principle</a></li>
+                    <li><a href="#wiring-connections">Wiring and Connections</a></li>
+                    <li><a href="#example-applications">Example Applications</a></li>
+                    <li><a href="#code-examples">Code Examples for Arduino</a></li>
+                    <li><a href="#troubleshooting">Troubleshooting</a></li>
+                    <li><a href="#faqs">FAQs</a></li>
+                </ul>
+            </nav>
+        </aside>
+    </div>
+</body>
+</html>

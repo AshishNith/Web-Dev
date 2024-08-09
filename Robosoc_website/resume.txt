@@ -1,0 +1,17 @@
+Ros - Turtle Following , controlling turtle using joystick , 
+CyberSecurity
+AI ML -
+Python - Matplotlib , Numpy , Pandas
+Computer Vision - 
+Web Dev - Portfolio , Boston Dynamics Clone , Robotics Docs , Robotics Website 
+CAD - 
+Hardware - 
+Robotics - Drone , Obstacle Avoidance , Line Follower , 
+
+
+Projects :-
+    Drone
+    Line Follower 
+    Obstacle Avoidance
+
+

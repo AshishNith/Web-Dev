@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arduino Documentation</title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="CSS/styles.css">
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <h1><a href="https://ashishnith.github.io/MyWebsite/">Ashish Ranjan <i class="ri-arrow-right-up-line"></i></a></h1>
+            <nav>
+                <ul>
+                    <li><a href="arduino.html">Arduino</a></li>
+                    <li><a href="MotorDriver.html">L298N Motor Driver</a></li>
+                    <li><a href="Sim900A.html">SIM900A GSM Module</a></li>
+                    <li><a href="ir.html">IR Sensor</a></li>
+                    <li><a href="servo-motor.html">Servo Motor (SG90)</a></li>
+                    <li><a href="hc-sr04.html">HC-SR04 Ultrasonic Sensor</a></li>
+                    <li><a href="joystick.html">Joystick</a></li>
+                    <li><a href="nrf24l01.html">NRF24L01 Transceiver Module</a></li>
+                    <li><a href="hc-05.html">HC-05 Bluetooth Module</a></li>
+                    <!-- Add more links for other components/modules as needed -->
+                </ul>
+            </nav>
+        </aside>
+        <main class="content">
+            <div class="box head">
+
+                <div class="heading">Arduino --Getting Started</div>
+            </div>
+
+            <div class="box">
+                <section id="what-is-arduino">
+                    <h2>What is Arduino?</h2>
+                    <p>Before getting into electronics, we had to do everything manually. For example, if you want to light an LED with a battery, you will make a circuit and turn on the switch when you want to turn on the bulb. But let's assume you want the LED to change its brightness according to the environmental lighting conditions. Then, after every small interval, you will have to increase or decrease the brightness of the LED using a potentiometer, which you will connect to the circuit.</p>
+                    <p>We can see that it is a very hard task to keep changing the brightness of the LED manually. Assume that if we had something that could sense the environmental light conditions and automatically set the brightness of the LED.</p>
+                    <p>Here comes the role of electronics. We can use Arduino, which can take signals from the sensor, and based on the command fed into its microcontroller, it can increase or decrease the brightness of the LED.</p>
+                    <img src="images/arduino.png" alt="Arduino board">
+                </section>
+            </div>
+            <div class="box">
+                <section id="why-use-arduino">
+                    <h2>Why Use Arduino?</h2>
+                    <ul>
+                        <li>Easy to learn and use - It is very easy to use and even a beginner can learn and use it in a very less time.</li>
+                        <li>Cost-effective - It is very affordable than any other microcontroller available.</li>
+                        <li>Versatile - Can be used for a variety of projects, from simple to complex.</li>
+                        <li>Community support - Large, active community for help and inspiration.</li>
+                    </ul>
+                </section>
+            </div>
+            <div class="box">
+                <section id="setting-up-arduino-ide">
+                    <h2>Setting Up the Arduino Software (IDE)</h2>
+                    <img src="./images/ide.png" alt="Arduino IDE">
+                    <ol>
+                        <li><strong>Download the Arduino IDE:</strong>
+                            <ul>
+                                <li>Go to the <a target="_blank" href="https://www.arduino.cc/en/software">Arduino IDE Downloads</a></li>
+                                <li>Click the download link for your operating system (Windows, Mac, Linux).</li>
+                                <li>Install the Arduino IDE.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Connect the Arduino Board:</strong>
+                            <ul>
+                                <li>Connect the Arduino board to your computer using the USB cable.</li>
+                                <li>Open the Arduino IDE.</li>
+                                <li>Go to Tools > Board: Arduino Uno (or select your specific board model).</li>
+                                <li>Go to Tools > Port and select the port that corresponds to your Arduino.</li>
+                            </ul>
+                        </li>
+                    </ol>
+                </section>
+            </div>
+            <div class="box">
+                <section id="programming-arduino">
+                    <h2>Programming Arduino</h2>
+                    <h3>Understanding the Structure of an Arduino Program</h3>
+                    <p>An Arduino program (also known as a sketch) is made up of two main parts - the setup and the loop. Let's break down these parts with examples.</p>
+                    <h4>The setup Function:</h4>
+                    <p>The setup function is where you write code that you want to run once when the Arduino starts up. This is where you set up your pins and initialize variables or libraries.</p>
+                    <pre><code>void setup() {
+  pinMode(13, OUTPUT); // Set pin 13 as an output
+}</code></pre>
+                    <p>In this example, <code>pinMode(13, OUTPUT)</code> tells the Arduino that pin 13 will be used as an output. This setup code runs once when the Arduino is powered on or reset.</p>
+                    <h4>The loop Function:</h4>
+                    <p>The loop function contains the main code that you want to run repeatedly. After the setup() function runs, the loop() function runs over and over again, in a cycle.</p>
+                    <pre><code>void loop() {
+  digitalWrite(13, HIGH); // Turn the LED on
+  delay(1000); // Wait for one second
+  digitalWrite(13, LOW); // Turn the LED off
+  delay(1000); // Wait for one second
+}</code></pre>
+                    <p>This code example will make the LED blink. Putting it all together:</p>
+                    <pre><code>void setup() {
+  pinMode(13, OUTPUT); // Set pin 13 as an output
+}
+
+void loop() {
+  digitalWrite(13, HIGH); // Turn the LED on
+  delay(1000); // Wait for one second
+  digitalWrite(13, LOW); // Turn the LED off
+  delay(1000); // Wait for one second
+}</code></pre>
+                    <h4>Additional Concepts that you must learn:</h4>
+                    <h5>Comments:</h5>
+                    <p>Comments are notes in the code that are ignored by the Arduino compiler. They help explain the code.</p>
+                    <pre><code>// This is a single-line comment
+/* This is a
+   multi-line comment */</code></pre>
+                    <h5>Variables:</h5>
+                    <p>Variables store data that you can use in your program.</p>
+                    <pre><code>int ledPin = 13; // Create a variable to store the LED pin number
+void setup() {
+  pinMode(ledPin, OUTPUT); // Set the LED pin as an output
+}
+void loop() {
+  digitalWrite(ledPin, HIGH); // Turn the LED on
+  delay(1000); // Wait for one second
+  digitalWrite(ledPin, LOW); // Turn the LED off
+  delay(1000); // Wait for one second
+}</code></pre>
+                </section>
+            </div>
+            <div class="box">
+                    <section id="parts-of-arduino-uno">
+                        <h2>Parts of an Arduino Uno</h2>
+                        <p>The Arduino Uno is one of the most popular boards in the Arduino family. It has various components that work together to make it a versatile and powerful tool for creating electronic projects. Let's go through each part in detail.</p>
+                        
+                        <h2>1. Microcontroller (ATmega328P)</h2>
+                        <p><strong>Description:</strong> The ATmega328P is the brain of the Arduino Uno. It is a microcontroller chip that executes the instructions written in your Arduino sketches.</p>
+                        <p><strong>Features:</strong></p>
+                        <ul>
+                            <li>8-bit AVR RISC-based microcontroller.</li>
+                            <li>32KB Flash memory for storing code.</li>
+                            <li>2KB SRAM for temporary data storage.</li>
+                            <li>1KB EEPROM for permanent data storage.</li>
+                            <li>20 MHz maximum clock speed.</li>
+                        </ul>
+                        <p><strong>Location:</strong> The rectangular chip located at the center of the board.</p>
+                        <p><strong>Example Use:</strong> Running the code that controls an LED blink pattern.</p>
+    
+                        <h2>2. Digital I/O Pins</h2>
+                        <p><strong>Description:</strong> The Arduino Uno has 14 digital input/output pins (0-13). These pins can be configured as either inputs or outputs in the code.</p>
+                        <p><strong>Features:</strong></p>
+                        <ul>
+                            <li>Can read digital signals (HIGH or LOW).</li>
+                            <li>Can write digital signals (HIGH or LOW).</li>
+                            <li>Each pin can source/sink up to 40 mA of current.</li>
+                        </ul>
+                        <p><strong>Location:</strong> Along the edge of the board, numbered from 0 to 13.</p>
+                        <p><strong>Example Use:</strong> Controlling an LED or reading the state of a button.</p>
+    
+                        <h2>3. Analog Input Pins</h2>
+                        <p><strong>Description:</strong> The Arduino Uno has 6 analog input pins (A0-A5). These pins can read analog signals and convert them to digital values using the built-in Analog-to-Digital Converter (ADC).</p>
+                        <p><strong>Features:</strong></p>
+                        <ul>
+                            <li>10-bit resolution (values from 0 to 1023).</li>
+                            <li>Can measure voltages from 0V to 5V.</li>
+                        </ul>
+                        <p><strong>Location:</strong> Along the edge of the board, labeled A0 to A5.</p>
+                        <p><strong>Example Use:</strong> Reading the value from a potentiometer or a temperature sensor.</p>
+    
+                        <h2>4. Power Pins</h2>
+                        <p><strong>Description:</strong> The power pins are used to power external components connected to the Arduino Uno.</p>
+                        <p><strong>Features:</strong></p>
+                        <ul>
+                            <li>VIN: Input voltage to the Arduino when using an external power source (7-12V).</li>
+                            <li>5V: Regulated 5V output from the onboard voltage regulator.</li>
+                            <li>3.3V: Regulated 3.3V output.</li>
+                            <li>GND: Ground pins.</li>
+                        </ul>
+                        <p><strong>Location:</strong> Grouped together near the edge of the board.</p>
+                        <p><strong>Example Use:</strong> Providing power to sensors and other components.</p>
+    
+                        <h2>5. USB Port</h2>
+                        <p><strong>Description:</strong> The USB port is used to connect the Arduino Uno to a computer for programming and serial communication.</p>
+                        <p><strong>Features:</strong></p>
+                        <ul>
+                            <li>Provides power to the board (5V).</li>
+                            <li>Allows uploading of sketches from the Arduino IDE.</li>
+                            <li>Supports serial communication for debugging and data exchange.</li>
+                        </ul>
+                        <p><strong>Location:</strong> USB Type B connector at the top of the board.</p>
+                        <p><strong>Example Use:</strong> Uploading code and monitoring sensor data via the Serial Monitor.</p>
+    
+                        <h2>6. Power Jack</h2>
+                        <p><strong>Description:</strong> The power jack allows the Arduino Uno to be powered from an external power supply (7-12V).</p>
+                        <p><strong>Features:</strong></p>
+                        <ul>
+                            <li>Accepts a standard 2.1mm center-positive plug.</li>
+                            <li>Connected to the onboard voltage regulator.</li>
+                        </ul>
+                        <p><strong>Location:</strong> Barrel jack connector at the top of the board.</p>
+                        <p><strong>Example Use:</strong> Powering the Arduino when not connected to a computer.</p>
+    
+                        <h2>7. Reset Button</h2>
+                        <p><strong>Description:</strong> The reset button restarts the microcontroller, causing the code to start executing from the beginning.</p>
+                        <p><strong>Features:</strong></p>
+                        <ul>
+                            <li>Useful for restarting a running sketch.</li>
+                            <li>Resets the microcontroller without disconnecting power.</li>
+                        </ul>
+                        <p><strong>Location:</strong> Small button near the top-left corner of the board.</p>
+                        <p><strong>Example Use:</strong> Restarting the Arduino to reinitialize the sketch.</p>
+    
+                        <h2>8. Voltage Regulator</h2>
+                        <p><strong>Description:</strong> The voltage regulator ensures that the Arduino Uno receives a steady 5V supply, regardless of fluctuations in the input voltage.</p>
+                        <p><strong>Features:</strong></p>
+                        <ul>
+                            <li>Regulates input voltages from 7-12V down to 5V.</li>
+                            <li>Protects the board and components from overvoltage.</li>
+                        </ul>
+                        <p><strong>Location:</strong> Small component near the power jack.</p>
+                        <p><strong>Example Use:</strong> Maintaining a stable power supply to the microcontroller and other components.</p>
+    
+                        <h2>9. Crystal Oscillator</h2>
+                        <p><strong>Description:</strong> The crystal oscillator provides a clock signal to the microcontroller, ensuring that it operates at a consistent speed.</p>
+                        <p><strong>Features:</strong></p>
+                        <ul>
+                            <li>16 MHz frequency.</li>
+                            <li>Ensures precise timing for operations.</li>
+                        </ul>
+                        <p><strong>Location:</strong> Small metallic component near the microcontroller.</p>
+                        <p><strong>Example Use:</strong> Keeping the microcontroller running at a steady speed for accurate timing.</p>
+    
+                        <h2>10. ICSP Header</h2>
+                        <p><strong>Description:</strong> The In-Circuit Serial Programming (ICSP) header is used for programming the microcontroller directly, bypassing the USB interface.</p>
+                        <p><strong>Features:</strong></p>
+                        <ul>
+                            <li>Provides an alternative method for programming the microcontroller.</li>
+                            <li>Used for advanced programming and debugging.</li>
+                        </ul>
+                        <p><strong>Location:</strong> 6-pin header near the top-right corner of the board.</p>
+                        <p><strong>Example Use:</strong> Reprogramming the bootloader or using advanced debugging tools.</p>
+    
+                        <h2>11. TX/RX LEDs</h2>
+                        <p><strong>Description:</strong> The TX (Transmit) and RX (Receive) LEDs indicate data transmission and reception over the USB serial interface.</p>
+                        <p><strong>Features:</strong></p>
+                        <ul>
+                            <li>TX LED blinks when data is being sent from the Arduino.</li>
+                            <li>RX LED blinks when data is being received by the Arduino.</li>
+                        </ul>
+                        <p><strong>Location:</strong> Near the USB port.</p>
+                        <p><strong>Example Use:</strong> Monitoring data exchange during serial communication.</p>
+    
+                        <h2>12. Power LED</h2>
+                        <p><strong>Description:</strong> The power LED indicates that the Arduino board is powered on.</p>
+                        <p><strong>Features:</strong></p>
+                        <ul>
+                            <li>Lights up when the board is receiving power.</li>
+                            <li>Helps in verifying that the board is properly powered.</li>
+                        </ul>
+                        <p><strong>Location:</strong> Near the USB port.</p>
+                        <p><strong>Example Use:</strong> Confirming that the Arduino is powered up and ready to use.</p>
+    
+                        <h2>13. Additional LEDs</h2>
+                        <p><strong>Description:</strong> The Arduino Uno has a built-in LED connected to digital pin 13. It can be used for testing and debugging purposes.</p>
+                        <p><strong>Features:</strong></p>
+                        <ul>
+                            <li>Controlled via digital pin 13.</li>
+                            <li>Useful for simple blink tests and status indicators.</li>
+                        </ul>
+                        <p><strong>Location:</strong> Near digital pin 13.</p>
+                        <p><strong>Example Use:</strong> Running the basic blink sketch to test the board.</p>
+                    </section>
+            </div>
+        </main>
+        <aside class="toc">
+            <h2>On this page</h2>
+            <nav>
+                <ul>
+                    <li><a href="#what-is-arduino">What is Arduino?</a></li>
+                    <li><a href="#why-use-arduino">Why Use Arduino?</a></li>
+                    <li><a href="#setting-up-arduino-ide">Setting Up the Arduino Software (IDE)</a></li>
+                    <li><a href="#programming-arduino">Programming Arduino</a></li>
+                    <li><a href="#introduction">Introduction</a></li>
+                            <li><a href="#what-is-ir-sensor">What is an IR Sensor Module?</a></li>
+                            <li><a href="#overview-ir-sensor">Overview of IR Sensor Module</a></li>
+                            <li><a href="#pin-configuration">Pin Configuration</a></li>
+                            <li><a href="#working-principle">Working Principle</a></li>
+                            <li><a href="#wiring-connections">Wiring and Connections</a></li>
+                            <li><a href="#example-applications">Example Applications</a></li>
+                            <li><a href="#code-examples">Code Examples for Arduino</a></li>
+                            <li><a href="#troubleshooting">Troubleshooting</a></li>
+                            <li><a href="#faqs">FAQs</a></li>
+                </ul>
+            </nav>
+        </aside>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

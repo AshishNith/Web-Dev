@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L298 Motor Driver Documentation</title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="CSS/styles.css">
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <h1><a href="https://ashishnith.github.io/MyWebsite/">Ashish Ranjan <i class="ri-arrow-right-up-line"></i></a></h1>
+            <nav>
+                <ul>
+                    <li><a href="arduino.html">Arduino</a></li>
+                    <li><a href="MotorDriver.html">L298N Motor Driver</a></li>
+                    <li><a href="Sim900A.html">SIM900A GSM Module</a></li>
+                    <li><a href="ir.html">IR Sensor</a></li>
+                    <li><a href="hc-sr04.html">HC-SR04 Ultrasonic Sensor</a></li>
+                    <li><a href="servo-motor.html">Servo Motor (SG90)</a></li>
+                    <li><a href="joystick.html">Joystick</a></li>
+                    <li><a href="nrf24l01.html">NRF24L01 Transceiver Module</a></li>
+                    <li><a href="hc-05.html">HC-05 Bluetooth Module</a></li>
+                    <!-- Add more links for other components/modules as needed -->
+                </ul>
+            </nav>
+        </aside>
+        <main class="content">
+            <div class="box head">
+
+                <div class="heading">L298n--Motor Driver</div>
+            </div>
+            <section id="introduction">
+                <h2>Introduction</h2>
+                <p>The L298 is a high voltage, high current dual full-bridge motor driver designed to drive  DC and stepping motors. It can control the direction and speed of two DC motors. The ai of this document is to  provide a detailed guide for the L298 motor driver, suitable for beginners.</p>
+                <img src="images/motorDriver.png" alt="">
+            </section>
+
+          
+
+            <section id="what-is-motor-driver">
+                <h2>1. What is a Motor Driver?</h2>
+                <p>A motor driver is like a translator between a tiny computer signal (like from an Arduino) and a big motor that needs lots of power. It helps the small signal from the computer control the motor properly by giving it the right amount of power it needs.</p>
+            </section>
+
+            <section id="overview-l298">
+                <h2>2. Overview of L298 Motor Driver</h2>
+                <p>The L298 motor driver is an integrated circuit (IC) used to control motors in various projects. It is capable of driving two DC motors or one stepper motor and is often used in robotics and other automated systems.</p>
+                <h3>Key Features</h3>
+                <ul>
+                    <li>Dual H-Bridge Motor Driver</li>
+                    <li>Can drive two DC motors or one stepper motor</li>
+                    <li>Maximum operating voltage: 46V</li>
+                    <li>Maximum output current: 2A per channel</li>
+                    <li>Thermal shutdown and high-temperature protection</li>
+                    <li>Control logic voltage: 5V</li>
+                </ul>
+            </section>
+
+            <section id="pin-configuration">
+                <h2>3. Pin Configuration</h2>
+                <p>The L298 motor driver IC comes in a 15-lead Multiwatt package. Here is the pin configuration:</p>
+                <h3>Pins Description</h3>
+                <ul>
+                    <li><strong>Current Sense A (1, 15)</strong>: Sense resistor pins for motor A.</li>
+                    <li><strong>Enable A (2)</strong>: Enables the H-bridge for motor A.</li>
+                    <li><strong>Input 1 (3)</strong>: Logic input for H-bridge (motor A).</li>
+                    <li><strong>Input 2 (4)</strong>: Logic input for H-bridge (motor A).</li>
+                    <li><strong>Output 1 (5)</strong>: H-bridge output (motor A).</li>
+                    <li><strong>Ground (6, 7, 11, 12)</strong>: Ground connections.</li>
+                    <li><strong>Output 2 (8)</strong>: H-bridge output (motor A).</li>
+                    <li><strong>V_s (9)</strong>: Supply voltage for the motors.</li>
+                    <li><strong>Vss (10)</strong>: Supply voltage for the logic inputs.</li>
+                    <li><strong>Output 3 (13)</strong>: H-bridge output (motor B).</li>
+                    <li><strong>Output 4 (14)</strong>: H-bridge output (motor B).</li>
+                    <li><strong>Input 3 (15)</strong>: Logic input for H-bridge (motor B).</li>
+                    <li><strong>Input 4 (16)</strong>: Logic input for H-bridge (motor B).</li>
+                    <li><strong>Enable B (17)</strong>: Enables the H-bridge for motor B.</li>
+                    <li><strong>Current Sense B (18, 19)</strong>: Sense resistor pins for motor B.</li>
+                </ul>
+            </section>
+
+            <section id="working-principle">
+                <h2>4. Working Principle</h2>
+                <p>The L298 motor driver works based on the H-bridge concept, which allows a voltage to be applied across a load in either direction. By using two H-bridges, the L298 can control the speed and direction of two DC motors independently.</p>
+                <h3>Controlling Motor Speed and Direction</h3>
+                <ul>
+                    <li><strong>Direction Control</strong>: Controlled by the state of the input pins (IN1, IN2 for motor A; IN3, IN4 for motor B).</li>
+                    <li><strong>Speed Control</strong>: Controlled by applying a PWM signal to the enable pins (ENA for motor A; ENB for motor B).</li>
+                </ul>
+                <h3>Truth Table for Motor Control</h3>
+                <table>
+                    <tr>
+                        <th>EN   </th>
+                        <th>IN1</th>
+                        <th>IN2</th>
+                        <th>Motor Operation</th>
+                    </tr>
+                    <tr>
+                        <td>0</td>
+                        <td>X</td>
+                        <td>X</td>
+                        <td>Motor Stopped</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>Motor Stopped</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>0</td>
+                        <td>Motor Rotates CW</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>0</td>
+                        <td>1</td>
+                        <td>Motor Rotates CCW</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>Motor Stopped</td>
+                    </tr>
+                </table>
+            </section>
+
+            <section id="wiring-connections">
+                <h2>5. Wiring and Connections</h2>
+                <p>To use the L298 motor driver with a microcontroller like Arduino, follow these steps:</p>
+                <h3>Components Needed</h3>
+                <ul>
+                    <li>L298 Motor Driver Module</li>
+                    <li>Arduino Board</li>
+                    <li>DC Motors</li>
+                    <li>Power Supply (for motors)</li>
+                    <li>Connecting Wires</li>
+                </ul>
+                <h3>Wiring Diagram</h3>
+                <p><strong>Example for controlling one DC motor:</strong></p>
+                <ul>
+                    <li>Connect <strong>EN1</strong> to a PWM pin on the Arduino (e.g., pin 9).</li>
+                    <li>Connect <strong>IN1</strong> to a digital pin on the Arduino (e.g., pin 8).</li>
+                    <li>Connect <strong>IN2</strong> to a digital pin on the Arduino (e.g., pin 7).</li>
+                    <li>Connect <strong>OUT1</strong> and <strong>OUT2</strong> to the two terminals of the DC motor.</li>
+                    <li>Connect <strong>Vss</strong> to the 5V pin on the Arduino.</li>
+                    <li>Connect <strong>GND</strong> to the ground pin on the Arduino.</li>
+                    <li>Connect <strong>Vs</strong> to the positive terminal of the external power supply.</li>
+                    <li>Connect the negative terminal of the external power supply to GND.</li>
+                </ul>
+                <img src="images/l298-connection.png" alt="">
+                <p><strong>Example Schematic:</strong></p>
+                <pre>
+Arduino           L298
+-----------------------
+GND       ->      GND
+5V        ->      Vss
+Pin 9     ->      ENA
+Pin 8     ->      IN1
+Pin 7     ->      IN2
+           ->      OUT1 -> Motor Terminal 1
+           ->      OUT2 -> Motor Terminal 2
+External  ->      Vs
+Power
+Supply   ->      GND
+                </pre>
+            </section>
+
+            <section id="example-applications">
+                <h2>6. Example Applications</h2>
+                <h3>Robotics</h3>
+                <ul>
+                    <li>Controlling the movement of robot wheels.</li>
+                    <li>Controlling the position of robotic arms.</li>
+                </ul>
+                <h3>Home Automation</h3>
+                <ul>
+                    <li>Controlling the opening and closing of curtains.</li>
+                    <li>Controlling conveyor belts in automated systems.</li>
+                </ul>
+                <h3>Industrial Automation</h3>
+                <ul>
+                    <li>Controlling motors in conveyor systems.</li>
+                    <li>Driving motors in automated machinery.</li>
+                </ul>
+            </section>
+
+            <section id="code-examples">
+                <h2>7. Code Examples for Arduino</h2>
+                <h3>Basic Example to Control a DC Motor</h3>
+                <pre>
+const int ENA = 9;
+const int IN1 = 8;
+const int IN2 = 7;
+
+void setup() {
+  pinMode(ENA, OUTPUT);
+  pinMode(IN1, OUTPUT);
+  pinMode(IN2, OUTPUT);
+}
+
+void loop() {
+  // Motor rotates clockwise
+  digitalWrite(IN1, HIGH);
+  digitalWrite(IN2, LOW);
+  analogWrite(ENA, 255); // Full speed
+  delay(2000); // Run for 2 seconds
+  
+  // Motor rotates counterclockwise
+  digitalWrite(IN1, LOW);
+  digitalWrite(IN2, HIGH);
+  analogWrite(ENA, 255); // Full speed
+  delay(2000); // Run for 2 seconds
+  
+  // Motor stops
+  digitalWrite(IN1, LOW);
+  digitalWrite(IN2, LOW);
+  analogWrite(ENA, 0); // Stop the motor
+  delay(2000); // Stop for 2 seconds
+}
+                </pre>
+            </section>
+
+            <section id="troubleshooting">
+                <h2>8. Troubleshooting</h2>
+                <h3>Common Issues</h3>
+                <ul>
+                    <li><strong>Motor not running</strong>: Check power connections and ensure the motor is properly connected.</li>
+                    <li><strong>Motor running in one direction only</strong>: Verify the logic inputs and ensure they are correctly set.</li>
+                    <li><strong>Overheating</strong>: Ensure the L298 is not overloaded and use a heat sink if necessary.</li>
+                    <li><strong>No response from motor</strong>: Check the enable pins and ensure they are properly configured.</li>
+                </ul>
+            </section>
+
+            
+        </main>
+        <aside class="toc">
+            <h2>On this Page</h2>
+            <nav>
+                <ul>
+                    <li><a href="#introduction">Introduction</a></li>
+                    <li><a href="#what-is-motor-driver">What is a Motor Driver?</a></li>
+                    <li><a href="#overview-l298">Overview of L298 Motor Driver</a></li>
+                    <li><a href="#pin-configuration">Pin Configuration</a></li>
+                    <li><a href="#working-principle">Working Principle</a></li>
+                    <li><a href="#wiring-connections">Wiring and Connections</a></li>
+                    <li><a href="#example-applications">Example Applications</a></li>
+                    <li><a href="#code-examples">Code Examples for Arduino</a></li>
+                    <li><a href="#troubleshooting">Troubleshooting</a></li>
+                </ul>
+            </nav>
+        </aside>
+    </div>
+</body>
+</html>
